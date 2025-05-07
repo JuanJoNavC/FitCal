@@ -1,8 +1,16 @@
+import { useFonts } from 'expo-font';
 import { useRouter } from 'expo-router';
 import React from 'react';
-import { Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Dimensions, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+const { width, height } = Dimensions.get('window');
 
 export default function WelcomeScreen() {
+  const [fontsLoaded] = useFonts({
+    'Stella': require('@/assets/fonts/Stella-Demo.ttf'),
+  });
+  if (!fontsLoaded) {
+    return null;
+  }
   return (
     <SafeAreaView style={[styles.container, { backgroundColor: '#7b66f4' }]}>
       <View style={styles.innerContainer}>
@@ -38,28 +46,28 @@ const styles = StyleSheet.create({
   },
   innerContainer: {
     flex: 1,
-    justifyContent: 'center',
-    marginVertical: 16,
+    justifyContent: 'space-around',  // reparte espacio de manera adaptable
+    alignItems: 'center',
+    paddingHorizontal: 20,
   },
   title: {
+    fontFamily: 'Stella',
     color: 'white',
     fontWeight: 'bold',
     fontSize: 45,
     textAlign: 'center',
     padding: 40,
-    marginBottom: 100,
   },
   imageContainer: {
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'space-around',
   },
   image: {
-    width: 450,
-    height: 400,
+    width: width * 0.8,
+    height: height * 0.4,
     resizeMode: 'contain',
   },
   space: {
-    marginTop: 170,
     gap: 16,
   },
   signupButton: {
@@ -73,12 +81,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     color: '#374151',
-    right: 10,
   },
   loginContainer: {
-
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'space-around',
   },
   loginText: {
     color: 'white',

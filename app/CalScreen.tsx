@@ -1,5 +1,5 @@
 import { Image } from 'expo-image';
-import { Pressable, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Dimensions, Pressable, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { ArrowLeftIcon } from 'react-native-heroicons/solid';
 
 import ResultadoCalorias from '@/components/ResultadoCalorias';
@@ -8,6 +8,8 @@ import { ThemedView } from '@/components/ThemedView';
 import { Picker } from '@react-native-picker/picker';
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
+
+const { width, height } = Dimensions.get('window');
 
 export default function HomeScreen() {
   const [sexo, setSexo] = useState('Hombre');
@@ -151,27 +153,23 @@ export default function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
-  outerContainer: {
-    flex: 1,
-    backgroundColor: '#7b66f4',
-  },
+  outerContainer: { flex: 1, backgroundColor: '#7b66f4' },
   reactLogo: {
-    width: 300,
-    height: 400,
+    width: width * 0.7,
+    height: height * 0.25,
     position: 'absolute',
     resizeMode: 'contain',
     alignSelf: 'center',
-    top: 0,
+    top: height * 0.02,
     zIndex: 2,
-
   },
   scrollContainer: {
     flex: 1,
     backgroundColor: '#fff',
-    borderTopLeftRadius: 40,
-    borderTopRightRadius: 40,
-    marginTop: 150, // push down to make space for floating image
-    paddingTop: 80, // ensure content doesn't hide under image
+    borderTopLeftRadius: width * 0.1,
+    borderTopRightRadius: width * 0.1,
+    marginTop: height * 0.17,
+    paddingTop: height * 0,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: -2 },
     shadowOpacity: 0.1,
@@ -180,21 +178,18 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   parallaxContent: {
-    paddingHorizontal: 16,
-    paddingBottom: 32,
-  },
-  headerContainer: {
-    marginLeft: 16,
-    marginTop: 8,
+    paddingHorizontal: width * 0.04,
+    paddingBottom: height * 0.04,
   },
   arrowContainer: {
-    marginLeft: 16,
-    marginRight: 468,
-    marginTop: 30,
+    position: 'absolute',
+    left: width * 0.05,
+    top: height * 0.04,
+    zIndex: 3,
   },
   arrowButton: {
     backgroundColor: '#facc15',
-    padding: 8,
+    padding: width * 0.02,
     borderTopRightRadius: 16,
     borderBottomLeftRadius: 22,
     shadowColor: '#000',
@@ -202,27 +197,20 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
-    margin: 10,
-  },
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: 20,
   },
   subtitle: {
-    fontSize: 14,
+    fontSize: 18,
     fontWeight: '600',
     color: '#374151',
-    marginBottom: 6,
-    marginTop: 16,
+    marginBottom: height * 0.008,
+    marginTop: height * 0.02,
   },
   formContainer: {
-    marginTop: 20,
-    paddingHorizontal: 16,
+    marginTop: height * 0.06,
+    paddingHorizontal: width * 0.04,
     backgroundColor: '#fff',
     borderRadius: 16,
-    paddingVertical: 20,
+    paddingVertical: height * 0.03,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
@@ -230,29 +218,25 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
   input: {
-    height: 44,
+    height: height * 0.04,
     borderColor: '#d1d5db',
     borderWidth: 1,
     borderRadius: 8,
-    marginBottom: 12,
-    paddingHorizontal: 12,
+    marginBottom: height * 0.015,
+    paddingHorizontal: width * 0.03,
     backgroundColor: '#f9fafb',
   },
   sendButton: {
-    backgroundColor: '#facc15',
-    paddingVertical: 14,
+    paddingVertical: 12,
+    backgroundColor: '#FACC15',
+    marginHorizontal: 28,
     borderRadius: 12,
-    alignItems: 'center',
-    marginTop: 24,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.15,
-    shadowRadius: 2,
-    elevation: 2,
+    marginTop: height * 0.02,
   },
   sendButtonText: {
-    color: '#1f2937',
-    fontSize: 16,
+    fontSize: 20,
     fontWeight: 'bold',
+    textAlign: 'center',
+    color: '#374151',
   },
 });

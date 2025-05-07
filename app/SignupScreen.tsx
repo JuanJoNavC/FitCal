@@ -1,15 +1,16 @@
 import { useRouter } from 'expo-router';
 import React from 'react';
-import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Dimensions, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { ArrowLeftIcon } from 'react-native-heroicons/solid';
 import { SafeAreaView } from 'react-native-safe-area-context';
+const { width, height } = Dimensions.get('window');
 
 export default function SignupScreen() {
     const navigation = useRouter();
 
     return (
         <View style={{ flex: 1, backgroundColor: '#7b66f4' }}>
-            <SafeAreaView style={styles.mainContainer}>
+            <SafeAreaView >
                 <View style={styles.headerContainer}>
                     <TouchableOpacity onPress={() => navigation.back()} style={styles.arrowContainer}>
                         <View style={styles.arrowButton}>
@@ -52,7 +53,7 @@ export default function SignupScreen() {
                         placeholder="Repita su contraseña"
                         secureTextEntry
                     />
-                    <TouchableOpacity style={styles.loginButton}>
+                    <TouchableOpacity style={styles.loginButton} onPress={() => navigation.push('/LoginScreen')}>
                         <Text style={styles.loginButtonText}>Registrarse</Text>
                     </TouchableOpacity>
 
@@ -83,9 +84,6 @@ export default function SignupScreen() {
 }
 
 const styles = StyleSheet.create({
-    mainContainer: {
-        marginBottom: 0,
-    },
     headerContainer: {
         flexDirection: 'row',
         justifyContent: 'flex-start',
@@ -109,34 +107,34 @@ const styles = StyleSheet.create({
     imageContainer: {
         flexDirection: 'row',
         justifyContent: 'center',
-        marginTop: 16,
     },
     image: {
-        width: 440,
-        height: 270,
+        width: width * 0.8,
+        height: height * 0.3,
+
     },
     bottomContainer: {
         flex: 1,
         backgroundColor: '#ffffff',
-        paddingHorizontal: 32,
-        paddingTop: 32,
+        paddingHorizontal: width * 0.08,
+        paddingTop: height * 0.02,
         borderTopLeftRadius: 50,
         borderTopRightRadius: 50,
     },
     formContainer: {
+        marginTop: 20,
         gap: 12,
     },
     label: {
-        color: '#374151', // gray-700
+        color: '#374151',
         marginLeft: 16,
         fontSize: 18,
     },
     input: {
-        backgroundColor: '#f3f4f6', // gray-100
-        color: '#374151', // gray-700
+        backgroundColor: '#f3f4f6',
+        color: '#374151',
         padding: 16,
         borderRadius: 24,
-        marginBottom: 12,
         fontSize: 18,
     },
     forgotPasswordContainer: {
@@ -144,19 +142,18 @@ const styles = StyleSheet.create({
         marginBottom: 20,
     },
     forgotPasswordText: {
-        color: '#374151', // gray-700
+        color: '#374151',
     },
     loginButton: {
-        backgroundColor: '#facc15', // yellow-400
+        backgroundColor: '#facc15',
         paddingVertical: 12,
         borderRadius: 16,
-        marginTop: 20,
     },
     loginButtonText: {
         textAlign: 'center',
         fontWeight: 'bold',
         fontSize: 18,
-        color: '#374151', // gray-700
+        color: '#374151',
     },
     orText: {
         paddingVertical: 5,
@@ -165,15 +162,17 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         gap: 24,
+        marginTop: 16,
     },
     socialButton: {
-        backgroundColor: '#f3f4f6', // gray-100
+        backgroundColor: '#f3f4f6',
         padding: 8,
         borderRadius: 24,
     },
     socialIcon: {
-        width: 40,
-        height: 40,
+        width: width * 0.1,
+        height: width * 0.1,
+        resizeMode: 'contain',
     },
     signupContainer: {
         flexDirection: 'row',
@@ -181,12 +180,12 @@ const styles = StyleSheet.create({
         marginTop: 28,
     },
     signupPrompt: {
-        color: '#6b7280', // gray-500
+        color: '#6b7280',
         fontWeight: '600',
         fontSize: 16,
     },
     signupLink: {
-        color: '#facc15', // yellow-400
+        color: '#facc15',
         fontWeight: '600',
         fontSize: 16,
     },
