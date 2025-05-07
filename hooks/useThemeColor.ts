@@ -5,6 +5,7 @@
 
 import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
+import { Background } from '@react-navigation/elements';
 
 export function useThemeColor(
   props: { light?: string; dark?: string },
